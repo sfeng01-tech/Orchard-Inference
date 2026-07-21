@@ -122,6 +122,16 @@ python scripts/generate-benchmark-charts.py \
   --output-dir benchmarks/charts/orchard-benchmark
 ```
 
+### Orchard vs. direct MLX-LM
+
+The repository includes a controlled comparison artifact from the same
+Apple-silicon workload:
+
+![Orchard vs. direct MLX-LM benchmark](benchmarks/results/orchard-vs-mlx-llama32.png)
+
+Treat these results as workload- and hardware-specific measurements, not as a
+general performance claim.
+
 ## Development
 
 ```shell
