@@ -1,0 +1,7 @@
+[
+  {"id": "arithmetic", "prompt": "What is 17 multiplied by 6? Answer briefly.", "expected_keywords": ["102"]},
+  {"id": "capital", "prompt": "What is the capital of Japan? Answer with the city name.", "expected_keywords": ["tokyo"]},
+  {"id": "code", "prompt": "In Python, which keyword defines a function?", "expected_keywords": ["def"]},
+  {"id": "systems", "prompt": "Name one benefit of request batching in inference serving.", "expected_keywords": ["throughput"]},
+  {"id": "instruction", "prompt": "Reply with exactly the word orchard.", "expected_keywords": ["orchard"]}
+]

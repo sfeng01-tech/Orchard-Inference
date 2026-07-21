@@ -1,0 +1,23 @@
+groups:
+  - name: orchard-inference
+    rules:
+      - alert: OrchardHighTailLatency
+        expr: histogram_quantile(0.95, sum by (le) (rate(orchard_end_to_end_latency_seconds_bucket[5m]))) > 5
+        for: 10m
+        labels: {severity: warning}
+        annotations: {summary: "Orchard inference p95 latency exceeds 5 seconds"}
+      - alert: OrchardQueueSaturation
+        expr: orchard_queue_depth > 50
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: "Orchard request queue is near its default capacity"}
+      - alert: OrchardTimeouts
+        expr: rate(orchard_requests_timed_out_total[5m]) > 0
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: "Orchard requests are timing out"}
+      - alert: OrchardBackendFailures
+        expr: rate(orchard_requests_failed_total[5m]) > 0
+        for: 2m
+        labels: {severity: critical}
+        annotations: {summary: "Orchard backend generation failures detected"}

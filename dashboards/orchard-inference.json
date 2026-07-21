@@ -1,0 +1,23 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "panels": [
+    {"type": "timeseries", "title": "Request rate", "targets": [{"expr": "rate(orchard_requests_received_total[5m])"}], "gridPos": {"h": 8, "w": 8, "x": 0, "y": 0}},
+    {"type": "timeseries", "title": "Output token throughput", "targets": [{"expr": "rate(orchard_output_tokens_total[5m])"}], "gridPos": {"h": 8, "w": 8, "x": 8, "y": 0}},
+    {"type": "timeseries", "title": "Queue and active requests", "targets": [{"expr": "orchard_queue_depth"}, {"expr": "orchard_active_requests"}], "gridPos": {"h": 8, "w": 8, "x": 16, "y": 0}},
+    {"type": "timeseries", "title": "End-to-end latency percentiles", "targets": [{"expr": "histogram_quantile(0.50, sum by (le) (rate(orchard_end_to_end_latency_seconds_bucket[5m])))", "legendFormat": "p50"}, {"expr": "histogram_quantile(0.95, sum by (le) (rate(orchard_end_to_end_latency_seconds_bucket[5m])))", "legendFormat": "p95"}, {"expr": "histogram_quantile(0.99, sum by (le) (rate(orchard_end_to_end_latency_seconds_bucket[5m])))", "legendFormat": "p99"}], "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}},
+    {"type": "timeseries", "title": "TTFT p95", "targets": [{"expr": "histogram_quantile(0.95, sum by (le) (rate(orchard_time_to_first_token_seconds_bucket[5m])))"}], "gridPos": {"h": 8, "w": 6, "x": 12, "y": 8}},
+    {"type": "timeseries", "title": "Batch-size distribution", "targets": [{"expr": "sum by (le) (rate(orchard_batch_size_bucket[5m]))"}], "gridPos": {"h": 8, "w": 6, "x": 18, "y": 8}},
+    {"type": "timeseries", "title": "Errors, timeouts, rejections", "targets": [{"expr": "rate(orchard_requests_failed_total[5m])", "legendFormat": "failed"}, {"expr": "rate(orchard_requests_timed_out_total[5m])", "legendFormat": "timed out"}, {"expr": "rate(orchard_requests_rejected_total[5m])", "legendFormat": "rejected"}], "gridPos": {"h": 8, "w": 8, "x": 0, "y": 16}},
+    {"type": "timeseries", "title": "Cache hit rate", "targets": [{"expr": "rate(orchard_cache_hits_total[5m]) / clamp_min(rate(orchard_cache_hits_total[5m]) + rate(orchard_cache_misses_total[5m]), 1)"}], "gridPos": {"h": 8, "w": 8, "x": 8, "y": 16}},
+    {"type": "timeseries", "title": "Process memory", "targets": [{"expr": "orchard_process_resident_memory_bytes"}], "gridPos": {"h": 8, "w": 8, "x": 16, "y": 16}}
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": ["orchard-inference", "apple-silicon"],
+  "templating": {"list": []},
+  "time": {"from": "now-1h", "to": "now"},
+  "title": "Orchard Inference",
+  "uid": "orchard-inference",
+  "version": 1
+}

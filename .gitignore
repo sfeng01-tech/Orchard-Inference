@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env
+.DS_Store
+.claude/
+.agents/
+prompt.md
+ROADMAP.md
+dist/
+build/
+models/
+benchmarks/results/*.json
+benchmarks/results/*.csv
